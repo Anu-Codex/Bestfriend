@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Bestie</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            --accent-color: #ff9a9e;
+            --text-color: #4a4a4a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f4f8;
+            background-image: radial-gradient(#d1d1d1 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #app {
+            width: 100%;
+            max-width: 400px;
+            height: 90vh;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            position: relative;
+            overflow-y: auto;
+            padding: 20px;
+            scrollbar-width: none;
+        }
+
+        #app::-webkit-scrollbar { display: none; }
+
+        .screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Elements Styling */
+        .badge {
+            background: #fff0f3;
+            color: #ff4d6d;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            border: 1px solid #ffccd5;
+        }
+
+        h1 { font-size: 1.5rem; margin-bottom: 10px; }
+        .cursive { font-family: 'Dancing Script', cursive; color: #70a1ff; font-size: 1.4rem; }
+
+        .floating-cat {
+            width: 100px;
+            margin: 40px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Envelope Styling */
+        .envelope-wrapper {
+            cursor: pointer;
+            margin-top: 50px;
+            transition: transform 0.3s;
+        }
+        .envelope-wrapper:hover { transform: scale(1.05); }
+
+        .envelope {
+            width: 250px;
+            height: 150px;
+            background: #f8edeb;
+            border: 2px solid #e2d1c3;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .seal {
+            width: 50px;
+            height: 50px;
+            background: #b07d8a;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Music Player */
+        .music-card {
+            width: 100%;
+            background: #f9f9f9;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid #eee;
+        }
+        .play-btn {
+            background: #ff9a9e;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Photo Album */
+        .album-card {
+            width: 100%;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .album-card img { width: 100%; border-radius: 5px; }
+
+        /* Notes Grid */
+        .note-card {
+            width: 100%;
+            background: #fff;
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px dashed #ccc;
+            cursor: pointer;
+        }
+        .note-content { display: none; font-size: 0.9rem; margin-top: 10px; color: #666; }
+
+        .btn-next {
+            background: #70a1ff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <!-- SCREEN 1: THE ENVELOPE -->
+    <section id="screen1" class="screen active">
+        <div class="badge">💖 FOR MY BESTIE</div>
+        <h1>A little something for you</h1>
+        <p class="cursive">Happy Best Friend's Day ✦</p>
+        
+        <img src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyOWhoMzRkYjRkeWljYWJhcTNsdHJ3Y3UzcjY1NXI1cXNtczQ1MjRjeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/T70hpBP1L0N7U0jtkq/giphy.gif" class="floating-cat" alt="cat">
+
+        <div class="envelope-wrapper" onclick="showScreen(2)">
+            <div class="envelope">
+                <div class="seal">B</div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.8rem; color: #888;">TAP TO OPEN ✦</p>
+        </div>
+    </section>
+
+    <!-- SCREEN 2: GREETING & MUSIC -->
+    <section id="screen2" class="screen">
+        <div class="badge">FOR MY FAVORITE PARTNER-IN-CRIME</div>
+        <img src="https://i.pinimg.com/originals/0a/6d/b9/0a6db9930f730c45582f6e52c8090547.jpg" style="width: 80px; border-radius: 50%;" alt="profile">
+        <h2>Happy Best Friend's Day</h2>
+        <p class="cursive">for Bestie ✦</p>
+        <p style="margin: 20px 0; font-size: 0.9rem; line-height: 1.6;">
+            Today is yours. A little corner of the internet — built just to say thanks for every inside joke, every secret, and every time you had my back.
+        </p>
+
+        <div class="music-card">
+            <button class="play-btn" onclick="toggleMusic()">▶</button>
+            <div style="text-align: left;">
+                <p style="font-weight: 600; font-size: 0.9rem;">Ashiyan</p>
+                <p style="font-size: 0.7rem; color: #888;">A TRACK FOR YOU</p>
+            </div>
+            <audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio> 
+        </div>
+
+        <button class="btn-next" onclick="showScreen(3)">SEE OUR ALBUM →</button>
+    </section>
+
+    <!-- SCREEN 3: ALBUM -->
+    <section id="screen3" class="screen">
+        <div class="badge">OUR ALBUM • BESTIE</div>
+        <h1>our little album</h1>
+        <p style="font-size: 0.8rem; margin-bottom: 20px;">a few moments i never want to forget ♡</p>
+
+        <div class="album-card">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmc0bmR0ZzZndXp4Z3p4Z3p4Z3p4Z3p4Z3p4Z3p4Z3p4Z3AmeT1z/v6aOebdGHu80D9xrEf/giphy.gif" alt="meme">
+            <p style="margin-top:10px; font-style: italic;">"Every dumb adventure with you turned out to be the best memory."</p>
+        </div>
+
+        <button class="btn-next" onclick="showScreen(4)">OPEN THE CARDS →</button>
+    </section>
+
+    <!-- SCREEN 4: INTERACTIVE NOTES -->
+    <section id="screen4" class="screen">
+        <div class="badge">THREE NOTES FOR BESTIE</div>
+        <h1>things i never said out loud</h1>
+        <p style="font-size: 0.8rem; margin-bottom: 20px;">tap each card — there's a note inside ✦</p>
+
+        <div class="note-card" onclick="revealNote(this)">
+            <p>🌸 YOU HAD MY BACK</p>
+            <p class="note-content">You've covered for me, fought for me, and shown up for me more times than I can count.</p>
+        </div>
+
+        <div class="note-card" onclick="revealNote(this)">
+            <p>🍑 YOU MAKE ME LAUGH</p>
+            <p class="note-content">No one reacts like you. I'd pick our brand of nonsense any day.</p>
+        </div>
+
+        <div class="note-card" onclick="revealNote(this)">
+            <p>🔮 YOU SET THE BAR</p>
+            <p class="note-content">Watching you figure life out made it less scary to try. I look up to you.</p>
+        </div>
+
+        <button class="btn-next" onclick="showScreen(5)">READ MY LETTER →</button>
+    </section>
+
+    <!-- SCREEN 5: FINAL LETTER -->
+    <section id="screen5" class="screen">
+        <img src="https://i.pinimg.com/originals/0a/6d/b9/0a6db9930f730c45582f6e52c8090547.jpg" style="width: 60px; border-radius: 50%; margin-bottom: 10px;">
+        <p class="cursive">Dear bestie,</p>
+        <div style="text-align: left; font-size: 0.9rem; line-height: 1.8; margin-top: 20px;">
+            I'm not great at this — saying soft stuff to your face — so I made you a tiny page instead. <br><br>
+            Thank you for being the loudest, most chaotic, most reliable person in my corner. <br><br>
+            I'm so glad you're my best friend. <br><br>
+            <strong>With love (and zero regrets),</strong><br>
+            — YOUR BEST FRIEND
+        </div>
+        <button class="btn-next" onclick="location.reload()" style="background: #ff9a9e;">♡ START AGAIN</button>
+    </section>
+</div>
+
+<script>
+    function showScreen(screenNum) {
+        // Hide all screens
+        const screens = document.querySelectorAll('.screen');
+        screens.forEach(s => s.classList.remove('active'));
+        
+        // Show target screen
+        document.getElementById('screen' + screenNum).classList.add('active');
+        
+        // Auto-play music if moving to screen 2
+        if(screenNum === 2) {
+            const music = document.getElementById('bgMusic');
+            music.play().catch(e => console.log("Audio needs user interaction first"));
+        }
+    }
+
+    function toggleMusic() {
+        const music = document.getElementById('bgMusic');
+        const btn = document.querySelector('.play-btn');
+        if (music.paused) {
+            music.play();
+            btn.innerHTML = "⏸";
+        } else {
+            music.pause();
+            btn.innerHTML = "▶";
+        }
+    }
+
+    function revealNote(card) {
+        const content = card.querySelector('.note-content');
+        content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+        card.style.borderColor = "#70a1ff";
+    }
+</script>
+
+</body>
+</html>
